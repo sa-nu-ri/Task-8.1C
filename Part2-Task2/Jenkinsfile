@@ -12,15 +12,18 @@ pipeline{
                 echo "Performing integration tests using 'TestNG'..."
             }
             post{
-                success{
-                    mail to: "sm.sanuri.d@gmail.com",
-                    subject: "Test Status Email: SUCCESS",
-                    body: "Testing was successful!"
-                }
-                failure{
-                    mail to: "sm.sanuri.d@gmail.com",
-                    subject: "Test Status Email: FAILURE",
-                    body: "Testing failed!"
+                always {
+                    emailext(
+                            body: """
+                                After Testing Build Status: ${currentBuild.currentResult}
+            
+                                Check the console output at: ${env.BUILD_URL}
+                            """,
+                            to: 'sm.sanuri.d@gmail.com',
+                            subject: "Pipeline Build Status: ${currentBuild.currentResult} - Build #${env.BUILD_NUMBER}",
+                            mimeType: 'text/plain',
+                            attachLog: true
+                        )
                 }
             }
         }
@@ -34,15 +37,18 @@ pipeline{
                 echo "Performing a security scan on the code using 'Snyk'..."
             }
             post{
-                success{
-                    mail to: "sm.sanuri.d@gmail.com",
-                    subject: "Security Scan Status Email: SUCCESS",
-                    body: "Security Scan was successful!"
-                }
-                failure{
-                    mail to: "sm.sanuri.d@gmail.com",
-                    subject: "Security Scan Status Email: FAILURE",
-                    body: "Security Scan failed!"
+                always {
+                    emailext(
+                            body: """
+                                After Security Scanning Build Status: ${currentBuild.currentResult}
+            
+                                Check the console output at: ${env.BUILD_URL}
+                            """,
+                            to: 'sm.sanuri.d@gmail.com',
+                            subject: "Pipeline Build Status: ${currentBuild.currentResult} - Build #${env.BUILD_NUMBER}",
+                            mimeType: 'text/plain',
+                            attachLog: true
+                        )
                 }
             }
         }
