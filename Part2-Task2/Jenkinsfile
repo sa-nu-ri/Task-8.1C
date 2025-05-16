@@ -13,13 +13,13 @@ pipeline{
             }
             post{
                 success{
-                    mail to: "sm.sanuri.d@gmail.com"
-                    subject: "Test Status Email: SUCCESS"
+                    mail to: "sm.sanuri.d@gmail.com",
+                    subject: "Test Status Email: SUCCESS",
                     body: "Testing was successful!"
                 }
                 failure{
-                    mail to: "sm.sanuri.d@gmail.com"
-                    subject: "Test Status Email: FAILURE"
+                    mail to: "sm.sanuri.d@gmail.com",
+                    subject: "Test Status Email: FAILURE",
                     body: "Testing failed!"
                 }
             }
@@ -35,13 +35,13 @@ pipeline{
             }
             post{
                 success{
-                    mail to: "sm.sanuri.d@gmail.com"
-                    subject: "Security Scan Status Email: SUCCESS"
+                    mail to: "sm.sanuri.d@gmail.com",
+                    subject: "Security Scan Status Email: SUCCESS",
                     body: "Security Scan was successful!"
                 }
                 failure{
-                    mail to: "sm.sanuri.d@gmail.com"
-                    subject: "Security Scan Status Email: FAILURE"
+                    mail to: "sm.sanuri.d@gmail.com",
+                    subject: "Security Scan Status Email: FAILURE",
                     body: "Security Scan failed!"
                 }
             }
